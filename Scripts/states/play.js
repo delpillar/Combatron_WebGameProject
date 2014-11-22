@@ -1,6 +1,7 @@
 /// <reference path="../objects/button.js" />
 /// <reference path="../objects/laser.js" />
 /// <reference path="../objects/coin.js" />
+/// <reference path="../objects/enemy.js" />
 /// <reference path="../objects/label.js" />
 /// <reference path="../objects/space.js" />
 /// <reference path="../objects/plane.js" />
@@ -15,9 +16,14 @@ var states;
         var interval = window.setInterval(function(){
             window.clearInterval(interval);
             coin.update();
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
+        /*    for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 lasers[count].update();
+            }*/
+            
+            for (var count = 0; count < constants.ENEMY_NUM; count++) {
+                    enemies[count].update();
             }
+            
             collision.update();
             scoreboard.update();
         },1000);
@@ -42,13 +48,19 @@ var states;
         // Instantiate Game Objects
         space = new objects.Space(stage, game);
         coin = new objects.Coin(stage, game);
+        enemy = new objects.Enemy(stage, game);
         plane = new objects.Plane(stage, game);
 
         // Show Cursor
         stage.cursor = "none";
 
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
+        /*for (var count = 0; count < constants.CLOUD_NUM; count++) {
             lasers[count] = new objects.Laser(stage, game);
+        }*/
+        
+        for (var count = 0; count < constants.ENEMY_NUM; count++) {
+                
+                enemies.push(new objects.Enemy(stage, game));    
         }
 
         // Display Scoreboard
