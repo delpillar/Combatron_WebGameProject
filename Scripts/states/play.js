@@ -16,17 +16,22 @@ var states;
         var interval = window.setInterval(function(){
             window.clearInterval(interval);
             coin.update();
-        /*    for (var count = 0; count < constants.CLOUD_NUM; count++) {
+            for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 lasers[count].update();
-            }*/
-            
-            for (var count = 0; count < constants.ENEMY_NUM; count++) {
-                    enemies[count].update();
             }
-            
             collision.update();
             scoreboard.update();
+            
         },1000);
+        
+        if (scoreboard.score >= 1000){
+            stage.removeChild(game);
+            plane.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.LEVEL2_STATE;
+            changeState(currentState);
+        }
         
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
@@ -54,9 +59,9 @@ var states;
         // Show Cursor
         stage.cursor = "none";
 
-        /*for (var count = 0; count < constants.CLOUD_NUM; count++) {
+        for (var count = 0; count < constants.CLOUD_NUM; count++) {
             lasers[count] = new objects.Laser(stage, game);
-        }*/
+        }
         
         for (var count = 0; count < constants.ENEMY_NUM; count++) {
                 
