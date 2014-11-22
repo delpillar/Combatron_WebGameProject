@@ -10,6 +10,7 @@
 /// <reference path="objects/button.js" />
 /// <reference path="managers/collision.js" />
 /// <reference path="states/play.js" />
+/// <reference path="states/level2.js" />
 /// <reference path="states/menu.js" />
 /// <reference path="states/gameover.js" />
 /// <reference path="states/instructions.js" />
@@ -48,7 +49,7 @@ function init() {
     createjs.Ticker.addEventListener("tick", gameLoop);
     optimizeForMobile();
 
-    currentState = constants.PLAY_STATE;
+    currentState = constants.MENU_STATE;
     changeState(currentState);
 }
 
@@ -89,6 +90,12 @@ function changeState(state) {
             currentStateFunction = states.instructionState;
             //instantiate instructions screen
             states.instructions();
+            break;
+        
+        case constants.LEVEL2_STATE:
+            currentStateFunction = states.level2State;
+            //instantiate level2 screen
+            states.level2();
             break;
     }
 }
