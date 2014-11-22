@@ -2,6 +2,7 @@
 /// <reference path="managers/asset.js" />
 /// <reference path="objects/laser.js" />
 /// <reference path="objects/coin.js" />
+/// <reference path="objects/enemy.js" />
 /// <reference path="objects/space.js" />
 /// <reference path="objects/plane.js" />
 /// <reference path="objects/scoreboard.js" />
@@ -20,7 +21,9 @@ var game;
 var space;
 var plane;
 var coin;
+var enemy;
 var lasers = [];
+var enemies = [];
 var scoreboard;
 
 var collision;
@@ -45,7 +48,7 @@ function init() {
     createjs.Ticker.addEventListener("tick", gameLoop);
     optimizeForMobile();
 
-    currentState = constants.MENU_STATE;
+    currentState = constants.PLAY_STATE;
     changeState(currentState);
 }
 
