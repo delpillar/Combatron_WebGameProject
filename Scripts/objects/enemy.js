@@ -14,7 +14,8 @@ var objects;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
-            this.filter = new createjs.ColorFilter(1,0,0,1);
+            this.image.scaleX = 1.5;
+            this.image.scaleY = 1.5;
             this.reset();
             
             this.dx = 2;
