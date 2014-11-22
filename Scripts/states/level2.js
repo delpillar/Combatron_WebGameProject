@@ -10,28 +10,21 @@
 
 var states;
 (function (states) {
-    function playState() {
+    function level2State() {
         space.update();
         plane.update();
+        
         var interval = window.setInterval(function(){
             window.clearInterval(interval);
             coin.update();
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
-                lasers[count].update();
+        
+            for (var count = 0; count < constants.ENEMY_NUM; count++) {
+                    enemies[count].update();
             }
+            
             collision.update();
             scoreboard.update();
-            
         },1000);
-        
-        if (scoreboard.score >= 1000){
-            stage.removeChild(game);
-            plane.destroy();
-            game.removeAllChildren();
-            game.removeAllEventListeners();
-            currentState = constants.LEVEL2_STATE;
-            changeState(currentState);
-        }
         
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
@@ -42,11 +35,11 @@ var states;
             changeState(currentState);
         }
     }
-    states.playState = playState;
+    states.level2State = level2State;
 
-    // play state Function
-    function play() {
-    
+    // level2 state Function
+    function level2() {
+        
         // Declare new Game Container
         game = new createjs.Container();
 
@@ -59,22 +52,17 @@ var states;
         // Show Cursor
         stage.cursor = "none";
 
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
-            lasers[count] = new objects.Laser(stage, game);
-        }
-        
         for (var count = 0; count < constants.ENEMY_NUM; count++) {
-                
-                enemies.push(new objects.Enemy(stage, game));    
+            enemies[count] = (new objects.Enemy(stage, game));    
         }
 
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, coin, lasers, scoreboard);
+        collision = new managers.Collision(plane, coin, lasers, scoreboard, enemies);
 
         stage.addChild(game);
     }
-    states.play = play;
+    states.level2 = level2;
 })(states || (states = {}));

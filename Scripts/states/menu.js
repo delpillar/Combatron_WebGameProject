@@ -40,7 +40,6 @@ var states;
         space.update();
         plane.image.y = stage.canvas.height/2;
         plane.image.x = 450;
-       // plane.update();
     }
     states.menuState = menuState;
 

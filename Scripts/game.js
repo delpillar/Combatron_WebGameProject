@@ -2,6 +2,7 @@
 /// <reference path="managers/asset.js" />
 /// <reference path="objects/laser.js" />
 /// <reference path="objects/coin.js" />
+/// <reference path="objects/enemy.js" />
 /// <reference path="objects/space.js" />
 /// <reference path="objects/plane.js" />
 /// <reference path="objects/scoreboard.js" />
@@ -9,6 +10,7 @@
 /// <reference path="objects/button.js" />
 /// <reference path="managers/collision.js" />
 /// <reference path="states/play.js" />
+/// <reference path="states/level2.js" />
 /// <reference path="states/menu.js" />
 /// <reference path="states/gameover.js" />
 /// <reference path="states/instructions.js" />
@@ -20,7 +22,9 @@ var game;
 var space;
 var plane;
 var coin;
+var enemy;
 var lasers = [];
+var enemies = [];
 var scoreboard;
 
 var collision;
@@ -86,6 +90,12 @@ function changeState(state) {
             currentStateFunction = states.instructionState;
             //instantiate instructions screen
             states.instructions();
+            break;
+        
+        case constants.LEVEL2_STATE:
+            currentStateFunction = states.level2State;
+            //instantiate level2 screen
+            states.level2();
             break;
     }
 }
