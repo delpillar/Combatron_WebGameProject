@@ -31,7 +31,7 @@ var managers;
         };
 
         // check collision between plane and any laser object
-        Collision.prototype.planeAndLaser = function (laser) {
+        /*Collision.prototype.planeAndLaser = function (laser) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             p1.x = this.plane.image.x;
@@ -44,7 +44,7 @@ var managers;
                 laser.reset();
             }
         };
-
+*/
         // check collision between plane and coin
         Collision.prototype.planeAndCoin = function () {
             var p1 = new createjs.Point();
@@ -62,9 +62,9 @@ var managers;
 
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
+            /*for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 this.planeAndLaser(this.laser[count]);
-            }
+            }*/
             this.planeAndCoin();
         };
         return Collision;
