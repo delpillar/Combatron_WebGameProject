@@ -8,6 +8,7 @@ var constants;
 
     // Game Constants
     constants.CLOUD_NUM = 10;
+    constants.ENEMY_NUM = 3;
     constants.LABEL_FONT = "20px Wallpoet";
     constants.LABEL_COLOUR = "#FF7B16";
     constants.PLANE_LIVES = 5;
