@@ -3,8 +3,10 @@ var managers;
     // Image and Sound Manifest;
     var assetManifest = [
         //credits to: http://www.tannerhelland.com
-        { id: "gameOver", src: "assets/sounds/Nevermore.mp3" },
-        { id: "gameMusic", src: "assets/sounds/WildWaters.mp3" },
+        /*{ id: "gameOver", src: "assets/sounds/Nevermore.mp3" },
+        { id: "gameMusic", src: "assets/sounds/WildWaters.mp3" },*/
+         { id: "gameOver", src: "" },
+        { id: "gameMusic", src: "" },
 
         { id: "stars", src: "assets/images/space5.jpg" },
         { id: "laser", src: "assets/images/beam.png" },

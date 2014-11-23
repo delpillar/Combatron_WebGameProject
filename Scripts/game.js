@@ -8,18 +8,21 @@
 /// <reference path="objects/scoreboard.js" />
 /// <reference path="objects/label.js" />
 /// <reference path="objects/button.js" />
+/// <reference path="objects/bullet.js" />
 /// <reference path="managers/collision.js" />
 /// <reference path="states/play.js" />
 /// <reference path="states/level2.js" />
 /// <reference path="states/menu.js" />
 /// <reference path="states/gameover.js" />
 /// <reference path="states/instructions.js" />
+
 // Combatron - Added basic state machine structure - Added Button and Label classes
 
 var stage;
 var game;
 
 var space;
+var bullet;
 var plane;
 var coin;
 var enemy;

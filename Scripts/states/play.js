@@ -5,14 +5,21 @@
 /// <reference path="../objects/label.js" />
 /// <reference path="../objects/space.js" />
 /// <reference path="../objects/plane.js" />
+/// <reference path="../objects/bullet.js" />
 /// <reference path="../objects/scoreboard.js" />
 /// <reference path="../managers/collision.js" />
 
 var states;
 (function (states) {
     function playState() {
+        
         space.update();
         plane.update();
+        for (var count = 0; count < plane.bullets.length; count++){
+            bullets[count].update();
+        }
+        
+        
         var interval = window.setInterval(function(){
             window.clearInterval(interval);
             coin.update();
@@ -43,19 +50,18 @@ var states;
         }
     }
     states.playState = playState;
-
+   
     // play state Function
     function play() {
     
         // Declare new Game Container
         game = new createjs.Container();
-
+        
         // Instantiate Game Objects
         space = new objects.Space(stage, game);
         coin = new objects.Coin(stage, game);
         enemy = new objects.Enemy(stage, game);
         plane = new objects.Plane(stage, game);
-
         // Show Cursor
         stage.cursor = "none";
 
@@ -71,7 +77,7 @@ var states;
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
-        // Instantiate Collision Manager
+        //Instantiate Collision Manager
         collision = new managers.Collision(plane, coin, lasers, scoreboard);
 
         stage.addChild(game);
