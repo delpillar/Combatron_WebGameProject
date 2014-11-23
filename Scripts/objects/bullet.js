@@ -16,7 +16,7 @@ var BulletSound;
             this.image.scaleX = 0.5;
             this.image.scaleY = 0.5;
             this.image.x = x;
-            this.dx = 5;
+            this.dx = 20;
             this.image.y = y;
             this.index = index;
             //this.reset();
@@ -34,12 +34,13 @@ var BulletSound;
 
         Bullet.prototype.reset = function () {
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
-            this.dx = Math.floor(Math.random() * 5 + 10);
+            //this.dx = Math.floor(Math.random() * 5 + 10);
             this.image.x = -this.width;
         };
 
         Bullet.prototype.destroy = function () {
             game.removeChild(this.image);
+            plane.bullets.shift();
         };
         return Bullet;
     })();
