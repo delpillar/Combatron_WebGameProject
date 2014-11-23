@@ -22,11 +22,11 @@ var states;
         var interval = window.setInterval(function(){
             window.clearInterval(interval);
             coin.update();
-           /* for (var count = 0; count < constants.CLOUD_NUM; count++) {
+            for (var count = 0; count < constants.CLOUD_NUM; count++) {
                 lasers[count].update();
-            }*/
-//            collision.update();
-//            scoreboard.update();
+            }
+            collision.update();
+            scoreboard.update();
         },1000);
         
         if (scoreboard.lives <= 0) {
@@ -53,15 +53,15 @@ var states;
         // Show Cursor
         stage.cursor = "none";
 
-//        for (var count = 0; count < constants.CLOUD_NUM; count++) {
-//            lasers[count] = new objects.Laser(stage, game);
-//        }
+        for (var count = 0; count < constants.CLOUD_NUM; count++) {
+            lasers[count] = new objects.Laser(stage, game);
+        }
 
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
-        // Instantiate Collision Manager
-//        collision = new managers.Collision(plane, coin, lasers, scoreboard);
+        //Instantiate Collision Manager
+        collision = new managers.Collision(plane, coin, lasers, scoreboard);
 
         stage.addChild(game);
     }

@@ -30,11 +30,14 @@ var bullets = [];
         }
         function shoot(e){
             if(e.keyCode == 32){
-                console.log(this);
-                bullet = new objects.Bullet(this.stage,this.game,this.plane.image.x + this.plane.width*2,this.plane.image.y,shots++);
-                bullets.push(bullet);
+                bullet = 
+                    new objects.Bullet(this.stage,
+                                       this.game,
+                                       this.plane.image.x + this.plane.width*2
+                                       ,this.plane.image.y
+                                       ,shots++);
+                bullets.push(bullet);    
             }
-            
         };
         Plane.prototype.update = function () {
             //console.log("Bullets: " + plane.bullets.length);
