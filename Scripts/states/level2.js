@@ -14,6 +14,10 @@ var states;
         space.update();
         plane.update();
         
+        for (var count = 0; count < plane.bullets.length; count++){
+            bullets[count].update();
+        }
+        
         var interval = window.setInterval(function(){
             window.clearInterval(interval);
             coin.update();
