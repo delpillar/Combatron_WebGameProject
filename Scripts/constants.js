@@ -8,7 +8,7 @@ var constants;
     constants.LEVEL2_STATE = 4;
 
     // Game Constants
-    constants.CLOUD_NUM = 8;
+    constants.CLOUD_NUM = 5;
     constants.ENEMY_NUM = 5;
     constants.LABEL_FONT = "20px Wallpoet";
     constants.LABEL_COLOUR = "#FF7B16";
