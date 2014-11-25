@@ -33,9 +33,9 @@ var bullets = [];
                 bullet = 
                     new objects.Bullet(this.stage,
                                        this.game,
-                                       this.plane.image.x + this.plane.width*2
-                                       ,this.plane.image.y
-                                       ,shots++);
+                                       this.plane.image.x + this.plane.width,
+                                       this.plane.image.y,
+                                       shots++);
                 bullets.push(bullet);    
             }
         };
@@ -47,7 +47,7 @@ var bullets = [];
             window.setInterval(function(){
                 mx = this.stage.mouseX;    
                 my = this.stage.mouseY;
-            },10);
+            }, 1000);
             
             if(this.image.y < my ){
                 game.removeChild(this.image);
