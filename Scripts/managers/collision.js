@@ -1,19 +1,22 @@
 /// <reference path="../objects/laser.js" />
 /// <reference path="../objects/enemy.js" />
+/// <reference path="../objects/bullet.js" />
 /// <reference path="../objects/coin.js" />
 /// <reference path="../objects/plane.js" />
 /// <reference path="../objects/scoreboard.js" />
+
 var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(plane, coin, laser, scoreboard, enemy) {
-            this.laser = [];
+        function Collision(plane, coin, laser, scoreboard, enemy, bullet) {
+            //this.laser = [];
             this.plane = plane;
             this.coin = coin;
             this.enemy = enemy;
             this.laser = laser;
             this.scoreboard = scoreboard;
+            this.bullet = bullet;
         }
         // Utility method - Distance calculation between two points
         Collision.prototype.distance = function (p1, p2) {
@@ -47,14 +50,34 @@ var managers;
             }
         };
         
+        Collision.prototype.bulletAndEnemy = function(bullet, enemy) {
+            var p1 = new createjs.Point();
+            var p2 = new createjs.Point();
+            p1.x = bullet.image.x;
+            p1.y = bullet.image.y;
+            p2.x = enemy.image.x;
+            p2.y = enemy.image.y;
+            if (this.distance(p1, p2) < ((bullet.height / 2) + (enemy.height / 2))) {
+                createjs.Sound.play("shipHit");
+                this.scoreboard.score += 100;
+                //enemy.reset();
+                enemy.reset();
+                bullet.destroy();
+            }
+            
+        }
+        
         // check collision between plane and enemy
         Collision.prototype.planeAndEnemy = function (enemy) {
             var p1 = new createjs.Point();
             var p2 = new createjs.Point();
             p1.x = this.plane.image.x;
             p1.y = this.plane.image.y;
+           
+            
             p2.x = enemy.image.x;
             p2.y = enemy.image.y;
+            
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (enemy.height / 2))) {
                 createjs.Sound.play("shipHit");
                 this.scoreboard.lives -= 1;
@@ -88,6 +111,13 @@ var managers;
                 for (var count = 0; count < constants.ENEMY_NUM; count++) {
                     this.planeAndEnemy(this.enemy[count]);
                 }
+                
+                for (var count = 0; count < this.bullet.length; count++) {
+                    for(var i = 0; i < this.enemy.length; i++){
+                        this.bulletAndEnemy(this.bullet[count], this.enemy[i]);
+                    }
+                }
+                    
             }
             this.planeAndCoin();
         };

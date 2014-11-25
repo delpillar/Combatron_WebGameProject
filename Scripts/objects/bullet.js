@@ -13,7 +13,7 @@ var BulletSound;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
-            this.image.scaleX = 0.5;
+            this.image.scaleX = 0.25;
             this.image.scaleY = 0.5;
             this.image.x = x;
             this.dx = 20;

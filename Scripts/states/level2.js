@@ -15,7 +15,7 @@ var states;
         plane.update();
         
         for (var count = 0; count < plane.bullets.length; count++){
-            bullets[count].update();
+            plane.bullets[count].update();
         }
         
         var interval = window.setInterval(function(){
@@ -64,7 +64,7 @@ var states;
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, coin, lasers, scoreboard, enemies);
+        collision = new managers.Collision(plane, coin, lasers, scoreboard, enemies, plane.bullets);
 
         stage.addChild(game);
     }
