@@ -10,7 +10,6 @@ var managers;
     // Collision Manager Class
     var Collision = (function () {
         function Collision(plane, coin, laser, scoreboard, enemy, bullet) {
-            //this.laser = [];
             this.plane = plane;
             this.coin = coin;
             this.enemy = enemy;

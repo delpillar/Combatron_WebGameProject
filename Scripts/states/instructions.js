@@ -80,14 +80,14 @@ var interval;
         game.addChild(instructionText);
         
         // Display Play Again Button
-        playButton = new objects.Button(stage.canvas.width - 60, stage.canvas.height - 30, "playButton");
+        playButton = new objects.Button(stage.canvas.width - 60, stage.canvas.height - 30, "playButton", 0.6, 0.5);
         playButton.scaleX = 0.5;
         playButton.scaleY = 0.5;
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
         
         // Display Main Menu Button
-        mainMenuButton = new objects.Button(stage.canvas.width - 180, stage.canvas.height - 30, "mainMenuButton");
+        mainMenuButton = new objects.Button(stage.canvas.width - 180, stage.canvas.height - 30, "mainMenuButton", 0.6, 0.5);
         mainMenuButton.scaleX = 0.5;
         mainMenuButton.scaleY = 0.5;
         game.addChild(mainMenuButton);

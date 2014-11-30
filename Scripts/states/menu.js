@@ -7,6 +7,7 @@
 /// <reference path="../objects/button.js" />
 /// <reference path="../objects/label.js" />
 var states;
+var gameNameLabel;
 (function (states) {
     function playButtonClicked(event) {
         createjs.Sound.play("startBtnSound");
@@ -39,12 +40,13 @@ var states;
     function menuState() {
         space.update();
         plane.image.y = stage.canvas.height/2;
-        plane.image.x = 450;
+        plane.image.x = 460;
+        gameNameLabel.color = "#FF"+Math.floor(Math.random() * 10).toString()+"B10";
+        
     }
     states.menuState = menuState;
 
     function menu() {
-        var gameNameLabel;
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -64,12 +66,12 @@ var states;
         game.addChild(gameNameLabel);
 
         // Display Play Button
-        playButton = new objects.Button(stage.canvas.width / 2, stage.canvas.height/2, "playButton");
+        playButton = new objects.Button(stage.canvas.width / 2, stage.canvas.height/2, "playButton", 1.1, 1);
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
         
         // Display Play Button
-        instructionButton = new objects.Button(stage.canvas.width / 2, playButton. y + 100, "instructionsButton");
+        instructionButton = new objects.Button(stage.canvas.width / 2, playButton. y + 100, "instructionsButton", 1.1, 1);
         game.addChild(instructionButton);
         instructionButton.addEventListener("click", instructionButtonClicked);
 

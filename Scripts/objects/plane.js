@@ -24,7 +24,7 @@ var bullets = [];
             this.bullets = bullets;
             this.engineSound = createjs.Sound.play('gameMusic', createjs.Sound.INTERRUPT_NONE, 0, 1500, -1, 1, 0);
             window.addEventListener("keypress", shoot);
-            window.addEventListener("keydown", shoot);
+            //window.addEventListener("keydown", shoot);
             game.addChild(this.image);
             
         }

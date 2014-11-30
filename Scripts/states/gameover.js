@@ -7,9 +7,11 @@
 /// <reference path="../objects/plane.js" />
 /// <reference path="../objects/scoreboard.js" />
 var states;
+var finalScore;
 (function (states) {
     function gameOverState() {
         space.update();
+        finalScore.color = "#FF" + Math.floor(Math.random() * 10).toString() + "B10";
     }
     states.gameOverState = gameOverState;
 
@@ -43,7 +45,6 @@ var states;
     function gameOver() {
         var gameOverLabel;
         var finalScoreLabel;
-        var finalScore;
         
         // Declare new Game Container
         game = new createjs.Container();
@@ -65,27 +66,29 @@ var states;
             gameOverLabel = new objects.Label(stage.canvas.width / 2 + 80, 40, "GAME OVER");
             gameOverLabel.font = "60px Wallpoet";
             gameOverLabel.textAlign = "center";
+            gameOverLabel.shadow = new createjs.Shadow("#000000", 5, 5, 5)
             game.addChild(gameOverLabel);
 
             // Display Final Score Label
             finalScoreLabel = new objects.Label(stage.canvas.width / 2 + 80, 120, "FINAL SCORE");
             finalScoreLabel.font = "50px Wallpoet";
             finalScoreLabel.textAlign = "center";
+            finalScoreLabel.shadow = new createjs.Shadow("#232323", 5, 5, 5)
             game.addChild(finalScoreLabel);
 
             // Display Final Score
-            finalScore = new objects.Label(stage.canvas.width / 2 + 40, 160, scoreboard.score.toString());
+            finalScore = new objects.Label(stage.canvas.width / 2 + 40, finalScoreLabel.y + 50, scoreboard.score.toString());
             finalScore.font = "50px Audiowide";
             finalScore.textAlign = "center";
             game.addChild(finalScore);
 
             // Display Try Again Button
-            tryAgain = new objects.Button(stage.canvas.width / 2, 300, "tryAgainButton");
+            tryAgain = new objects.Button(stage.canvas.width / 2, 300, "tryAgainButton", 1.2, 1);
             game.addChild(tryAgain);
             tryAgain.addEventListener("click", tryAgainClicked);
             
             // Display Main Menu Button
-            mainMenuButton = new objects.Button(stage.canvas.width / 2 , tryAgain.y + 100, "mainMenuButton");
+            mainMenuButton = new objects.Button(stage.canvas.width / 2 , tryAgain.y + 100, "mainMenuButton", 1.2, 1);
             game.addChild(mainMenuButton);
             mainMenuButton.addEventListener("click", mainMenuButtonClicked);
 

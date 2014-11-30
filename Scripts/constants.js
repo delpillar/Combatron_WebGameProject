@@ -11,6 +11,6 @@ var constants;
     constants.CLOUD_NUM = 5;
     constants.ENEMY_NUM = 5;
     constants.LABEL_FONT = "20px Wallpoet";
-    constants.LABEL_COLOUR = "#FF7B16";
+    constants.LABEL_COLOUR = "#FF7B10";
     constants.PLANE_LIVES = 5;
 })(constants || (constants = {}));
