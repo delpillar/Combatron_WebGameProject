@@ -54,10 +54,15 @@ var managers;
     
     var spriteSheetData3 = {
         "images": ["assets/images/coin.png"],
-        "frames": {width:50, height:50},
+        "frames": {width:80, height:60},
         "animations": {
-            spin:[0,9,,0.5]
+            spin:[0,7,,0.5]
         }
+    };
+    
+    var spriteSheetData4 = {
+        "images": ["assets/images/explosion.png"],
+        "frames": {}
     };
 
     // Asset Manager Class
