@@ -12,6 +12,7 @@
 /// <reference path="managers/collision.js" />
 /// <reference path="states/play.js" />
 /// <reference path="states/level2.js" />
+/// <reference path="states/level3.js" />
 /// <reference path="states/menu.js" />
 /// <reference path="states/gameover.js" />
 /// <reference path="states/instructions.js" />
