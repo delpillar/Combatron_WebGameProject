@@ -53,16 +53,19 @@ var managers;
     };
     
     var spriteSheetData3 = {
-        "images": ["assets/images/coin.png"],
+        "images": ["assets/images/powerup.png"],
         "frames": {width:80, height:60},
         "animations": {
-            spin:[0,7,,0.5]
+            spin:[0,7,,0.4]
         }
     };
     
     var spriteSheetData4 = {
         "images": ["assets/images/explosion.png"],
-        "frames": {}
+        "frames": {width:38.4, height:39},
+        "animations": {
+            explode:[0,24,,1]
+        } 
     };
 
     // Asset Manager Class
@@ -77,6 +80,7 @@ var managers;
             this.atlas = new createjs.SpriteSheet(spriteSheetData);
             this.ship = new createjs.SpriteSheet(spriteSheetData2);
             this.coin = new createjs.SpriteSheet(spriteSheetData3);
+            this.explode = new createjs.SpriteSheet(spriteSheetData4);
         };
         return Assets;
     })();

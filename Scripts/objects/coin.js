@@ -12,7 +12,8 @@ var objects;
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
             this.reset();
-
+            this.image.scaleX = 1.5;
+            this.image.scaleY = 1.5;
             this.dx = 5;
             this.dy = 2;
 
