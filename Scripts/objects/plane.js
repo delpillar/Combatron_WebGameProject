@@ -14,6 +14,7 @@ var bullets = [];
             this.idle = new createjs.Sprite(managers.Assets.ship,"idle");
             this.up = new createjs.Sprite(managers.Assets.ship,"up");
             this.down = new createjs.Sprite(managers.Assets.ship,"down");
+            this.explode = new createjs.Sprite(managers.Assets.explode,"explode");
             this.image = this.idle;
             this.image.x = this.stage.mouseX;
             this.image.y = this.stage.mouseY;
@@ -22,25 +23,31 @@ var bullets = [];
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
             this.bullets = bullets;
+            this.isPressed = false;
+            this.isShooting = false;
             this.engineSound = createjs.Sound.play('gameMusic', createjs.Sound.INTERRUPT_NONE, 0, 1500, -1, 1, 0);
-            window.addEventListener("keypress", shoot);
-            //window.addEventListener("keydown", shoot);
             game.addChild(this.image);
             
         }
-        function shoot(e){
-            if(e.keyCode == 32){
-                bullet = 
-                    new objects.Bullet(this.stage,
-                                       this.game,
-                                       this.plane.image.x + this.plane.width,
-                                       this.plane.image.y,
-                                       shots++);
-                bullets.push(bullet);    
+        Plane.prototype.releaseKey = function(e){
+            if (e.keyCode == 32) {
+            this.isShooting = false;
+            }
+        }
+        Plane.prototype.pressKey = function(e){
+            if(e.keyCode == 32) {
+                if(!this.isShooting) {
+                    bullet = new objects.Bullet(this.stage,
+                       this.game,
+                       this.plane.image.x + this.plane.width,
+                       this.plane.image.y,
+                       shots++);
+                    bullets.push(bullet);
+                    this.isShooting = true;
+                }
             }
         };
         Plane.prototype.update = function () {
-            //console.log("Bullets: " + plane.bullets.length);
             this.image.y = this.stage.mouseY;
             this.image.x = this.stage.mouseX;
             //bullet.update();
@@ -76,7 +83,7 @@ var bullets = [];
                 this.image.regY = this.height / 2;
                 this.image.y = this.stage.mouseY;
                 this.image.x = this.stage.mouseX;
-                this.image.gotoAndPlay(this.idle);
+                this.image.gotoAndPlay(this.explode);
                 game.addChild(this.image);
             }
         };
