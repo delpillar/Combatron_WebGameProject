@@ -5,7 +5,9 @@ var constants;
     constants.PLAY_STATE = 1;
     constants.GAME_OVER_STATE = 2;
     constants.INSTRUCTION_STATE = 3;
-    constants.LEVEL2_STATE = 4;
+    constants.LEVEL2_STATE = 4
+    constants.LOADING = 5;
+    
 
     // Game Constants
     constants.CLOUD_NUM = 5;
