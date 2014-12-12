@@ -26,7 +26,7 @@ var laserSound;
 
         Laser.prototype.reset = function () {
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
-            this.dx = Math.floor(Math.random() * 5 + 10);
+            this.dx = Math.floor(Math.random() * 8 + 15);
             this.image.x = -this.width;
         };
 
