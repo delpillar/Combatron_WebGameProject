@@ -16,14 +16,12 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
 (function (states) {
     'use strict';
     function playState() {
-        
         space.update();
         plane.update();
         for (count = 0; count < plane.bullets.length; count += 1) {
             bullets[count].update();
         }
-        
-        
+
         var interval = window.setInterval(function () {
             window.clearInterval(interval);
             game.removeChild(stageLabel);
@@ -69,7 +67,7 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
         enemy = new objects.Enemy(stage, game);
         plane = new objects.Plane(stage, game);
        
-        stageLabel = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Collect 15 powerups!");
+        stageLabel = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Collect " + constants.COINSCOLLECTED.toString() + " powerups!");
         stageLabel.font = "bold 40px Wallpoet";
         stageLabel.textAlign = "center";
         stageLabel.shadow = new createjs.Shadow("#000000", 5, 5, 5);
@@ -94,4 +92,4 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
         stage.addChild(game);
     }
     states.play = play;
-})(states || (states = {}));
+}(states || (states = {})));
