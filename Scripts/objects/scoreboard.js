@@ -20,7 +20,7 @@ var objects, constants, createjs, game;
             game.addChild(this.hpBar);
         }
         Scoreboard.prototype.update = function () {
-            this.labelText = "Lives: " + this.lives.toString() + "      Score: " + this.score.toString();
+            this.labelText = "Lives: " + this.lives.toString() + "      Score: " + constants.SCORE.toString();
             this.label.text = this.labelText;
         };
 
