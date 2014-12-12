@@ -1,7 +1,8 @@
 /// <reference path="../managers/asset.js" />
-var objects;
-var laserSound;
+var objects, createjs, managers, game;
+var laserSound, constants;
 (function (objects) {
+    'use strict';
     // Laser class
     var Laser = (function () {
         function Laser(stage, game) {
@@ -26,7 +27,7 @@ var laserSound;
 
         Laser.prototype.reset = function () {
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
-            this.dx = Math.floor(Math.random() * 5 + 10);
+            this.dx = Math.floor(Math.random() * constants.LASER_MIN_SPEED + constants.LASER_MAX_SPEED);
             this.image.x = -this.width;
         };
 

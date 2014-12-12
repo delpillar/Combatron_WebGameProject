@@ -19,6 +19,7 @@ var finalScore;
 
     // Restart Game when Try Again Button is clicked
     function tryAgainClicked(event) {
+        constants.SCORE = 0;
         createjs.Sound.stop();
         stage.removeChild(game);
         game.removeAllChildren();
@@ -47,6 +48,8 @@ var finalScore;
     function gameOver() {
         var gameOverLabel, finalScoreLabel;
         
+        window.removeEventListener("mousedown", plane.pressKey);
+        window.removeEventListener("mouseup", plane.releaseKey);
         // Declare new Game Container
         game = new createjs.Container();
 

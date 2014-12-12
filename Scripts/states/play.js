@@ -9,29 +9,32 @@
 /// <reference path="../objects/scoreboard.js" />
 /// <reference path="../managers/collision.js" />
 
-var states;
+var states, space, plane, count, bullets, coin, constants, lasers, collision, scoreboard,
+    stage, game, currentState, currentStateFunction, changeState, createjs, objects, enemy,
+    enemies, managers, stageLabel;
+
 (function (states) {
+    'use strict';
     function playState() {
-        
         space.update();
         plane.update();
         for (count = 0; count < plane.bullets.length; count += 1) {
             bullets[count].update();
         }
-        
-        
-        var interval = window.setInterval(function(){
+
+        var interval = window.setInterval(function () {
             window.clearInterval(interval);
+            game.removeChild(stageLabel);
             coin.update();
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
+            for (count = 0; count < constants.CLOUD_NUM; count += 1) {
                 lasers[count].update();
             }
             collision.update();
             scoreboard.update();
             
-        },1000);
+        }, 1000);
         
-        if (scoreboard.score >= 1000){
+        if (scoreboard.coinsCollected >= constants.COINSCOLLECTED) {
             stage.removeChild(game);
             plane.destroy();
             game.removeAllChildren();
@@ -63,16 +66,21 @@ var states;
         coin = new objects.Coin(stage, game);
         enemy = new objects.Enemy(stage, game);
         plane = new objects.Plane(stage, game);
+       
+        stageLabel = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Collect " + constants.COINSCOLLECTED.toString() + " powerups!");
+        stageLabel.font = "bold 40px Wallpoet";
+        stageLabel.textAlign = "center";
+        stageLabel.shadow = new createjs.Shadow("#000000", 5, 5, 5);
+        game.addChild(stageLabel);
         // Show Cursor
         stage.cursor = "none";
 
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
+        for (count = 0; count < constants.CLOUD_NUM; count += 1) {
             lasers[count] = new objects.Laser(stage, game);
         }
         
-        for (var count = 0; count < constants.ENEMY_NUM; count++) {
-                
-                enemies.push(new objects.Enemy(stage, game));    
+        for (count = 0; count < constants.ENEMY_NUM; count += 1) {
+            enemies.push(new objects.Enemy(stage, game));
         }
 
         // Display Scoreboard
@@ -84,4 +92,4 @@ var states;
         stage.addChild(game);
     }
     states.play = play;
-})(states || (states = {}));
+}(states || (states = {})));
