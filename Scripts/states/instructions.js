@@ -48,6 +48,9 @@ var interval;
         if(plane.image.x > stage.canvas.width){
             plane.image.x = 0 - plane.width;
         }
+        
+        powerup.image.y = stage.canvas.height / 1.5 + 30;
+        powerup.image.x = stage.canvas.width / 2 - 110;
     }
     states.instructionState = instructionState;
 
@@ -60,7 +63,8 @@ var interval;
         // Instantiate Game Objects
         space = new objects.Space(stage, game);
         plane = new objects.Plane(stage, game);
-
+        powerup = new objects.Coin(stage, game);
+        
         // Show Cursor
         stage.cursor = "default";
 
@@ -72,12 +76,14 @@ var interval;
         game.addChild(gameNameLabel);
         
         // Display Game Instruction text
-        instructionText = new objects.Label(40, stage.canvas.height / 2 + 40 , "You are being hunted by your own kind and you need to escape. \nFind earth while keeping yourself alive.\nDodge the barrage of lasers by moving the mouse around.\nCollect coins for extra score. ");
+        instructionText = new objects.Label(40, stage.canvas.height / 2 + 40 , "You are being hunted by your own kind and you need to escape. \nFind earth while keeping yourself alive.\nDodge the barrage of lasers by moving the mouse around.\n\nCollect powerups               for extra score. \nLeft click to shoot enemies after level 1.");
         instructionText.regX = 0;
         instructionText.regY = 0;
         instructionText.font = "15px Audiowide";
         instructionText.textAlign = "left";
         game.addChild(instructionText);
+        
+        
         
         // Display Play Again Button
         playButton = new objects.Button(stage.canvas.width - 60, stage.canvas.height - 30, "playButton", 0.6, 0.5);

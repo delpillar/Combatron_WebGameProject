@@ -9,13 +9,14 @@ var objects;
             this.idle = new createjs.Sprite(managers.Assets.ship,"idle");
             this.up = new createjs.Sprite(managers.Assets.ship,"up");
             this.down = new createjs.Sprite(managers.Assets.ship,"down");
+            this.explode = new createjs.Sprite(managers.Assets.ship,"explode");
             this.image = this.idle;
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
-            this.image.scaleX = 1.5;
-            this.image.scaleY = 1.5;
+            this.image.scaleX = 1.8;
+            this.image.scaleY = 1.8;
             this.reset();
             
             this.dx = 2;
