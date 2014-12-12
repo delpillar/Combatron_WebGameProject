@@ -76,7 +76,7 @@ var interval;
         game.addChild(gameNameLabel);
         
         // Display Game Instruction text
-        instructionText = new objects.Label(40, stage.canvas.height / 2 + 40 , "You are being hunted by your own kind and you need to escape. \nFind earth while keeping yourself alive.\nDodge the barrage of lasers by moving the mouse around.\n\nCollect powerups               for extra score. ");
+        instructionText = new objects.Label(40, stage.canvas.height / 2 + 40 , "You are being hunted by your own kind and you need to escape. \nFind earth while keeping yourself alive.\nDodge the barrage of lasers by moving the mouse around.\n\nCollect powerups               for extra score. \nPress SPACE to shoot enemies after level 1.");
         instructionText.regX = 0;
         instructionText.regY = 0;
         instructionText.font = "15px Audiowide";

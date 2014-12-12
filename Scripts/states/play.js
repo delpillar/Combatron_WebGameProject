@@ -15,7 +15,7 @@ var states;
         
         space.update();
         plane.update();
-        for (var count = 0; count < plane.bullets.length; count++){
+        for (count = 0; count < plane.bullets.length; count += 1) {
             bullets[count].update();
         }
         
@@ -56,7 +56,7 @@ var states;
     
         // Declare new Game Container
         game = new createjs.Container();
-        
+        console.log(objects); 
         // Instantiate Game Objects
         space = new objects.Space(stage, game);
         coin = new objects.Coin(stage, game);
