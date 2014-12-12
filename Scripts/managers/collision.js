@@ -4,7 +4,6 @@
 /// <reference path="../objects/coin.js" />
 /// <reference path="../objects/plane.js" />
 /// <reference path="../objects/scoreboard.js" />
-
 var managers, createjs, count, i, currentState, constants;
 (function (managers) {
     'use strict';
@@ -23,13 +22,10 @@ var managers, createjs, count, i, currentState, constants;
             var result = 0,
                 xPoints = 0,
                 yPoints = 0;
-
             xPoints = p2.x - p1.x;
             xPoints = xPoints * xPoints;
-
             yPoints = p2.y - p1.y;
             yPoints = yPoints * yPoints;
-
             result = Math.sqrt(xPoints + yPoints);
 
             return result;
@@ -59,7 +55,8 @@ var managers, createjs, count, i, currentState, constants;
             p2.y = enemy.image.y;
             if (this.distance(p1, p2) < ((bullet.height / 2) + (enemy.height / 2))) {
                 createjs.Sound.play("shipHit");
-                this.scoreboard.score += 100;
+                constants.SCORE += 100;
+                this.scoreboard.score += constants.SCORE;
                 this.scoreboard.enemiesKilled += 1;
                 enemy.reset();
                 bullet.destroy();
@@ -73,11 +70,8 @@ var managers, createjs, count, i, currentState, constants;
                 p2 = new createjs.Point();
             p1.x = this.plane.image.x;
             p1.y = this.plane.image.y;
-           
-            
             p2.x = enemy.image.x;
             p2.y = enemy.image.y;
-            
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (enemy.height / 2))) {
                 createjs.Sound.play("shipHit");
                 this.scoreboard.lives -= 1;
@@ -96,8 +90,8 @@ var managers, createjs, count, i, currentState, constants;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.coin.height / 2))) {
                 createjs.Sound.play("coinSound");
                 this.scoreboard.coinsCollected += 1;
-                console.log("Coins Collected: " + this.scoreboard.coinsCollected);
-                this.scoreboard.score += 100;
+                constants.SCORE += 100;
+                this.scoreboard.score += constants.SCORE;
                 this.coin.reset();
             }
         };
@@ -113,17 +107,28 @@ var managers, createjs, count, i, currentState, constants;
                 for (count = 0; count < constants.ENEMY_NUM; count += 1) {
                     this.planeAndEnemy(this.enemy[count]);
                 }
-                
                 for (count = 0; count < this.bullet.length; count += 1) {
                     for (i = 0; i < this.enemy.length; i += 1) {
                         this.bulletAndEnemy(this.bullet[count], this.enemy[i]);
                     }
                 }
-                    
+            }
+            if (currentState === 6) {
+                for (count = 0; count < constants.CLOUD_NUM; count += 1) {
+                    this.planeAndLaser(this.laser[count]);
+                }
+                for (count = 0; count < constants.ENEMY_NUM; count += 1) {
+                    this.planeAndEnemy(this.enemy[count]);
+                }
+                for (count = 0; count < this.bullet.length; count += 1) {
+                    for (i = 0; i < this.enemy.length; i += 1) {
+                        this.bulletAndEnemy(this.bullet[count], this.enemy[i]);
+                    }
+                }
             }
             this.planeAndCoin();
         };
         return Collision;
-    })();
+    }());
     managers.Collision = Collision;
-})(managers || (managers = {}));
+}(managers || (managers = {})));
