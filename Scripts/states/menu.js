@@ -6,22 +6,20 @@
 /// <reference path="../objects/laser.js" />
 /// <reference path="../objects/button.js" />
 /// <reference path="../objects/label.js" />
-var states;
+var states, createjs, stage, game, plane, space, instructionButton, currentState, constants, changeState,
+    gameNameLabel, currentState, objects, playButton;
 (function (states) {
+    'use strict';
     function playButtonClicked(event) {
         createjs.Sound.play("startBtnSound");
-        
-        var interval = window.setInterval(function(){
-        window.clearInterval(interval);
-        stage.removeChild(game);
-        plane.destroy();
-        game.removeAllChildren();
-        game.removeAllEventListeners();
-        currentState = constants.PLAY_STATE;
-        changeState(currentState);
-        
-        },500);
-        
+        setTimeout(function () {
+            stage.removeChild(game);
+            plane.destroy();
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.PLAY_STATE;
+            changeState(currentState);
+        }, 500);
     }
     states.playButtonClicked = playButtonClicked;
     
@@ -38,14 +36,14 @@ var states;
     
     function menuState() {
         space.update();
-        plane.image.y = stage.canvas.height/2;
-        plane.image.x = 450;
-       // plane.update();
+        plane.image.y = stage.canvas.height / 2;
+        plane.image.x = 460;
+        gameNameLabel.color = "#FF" + Math.floor(Math.random() * 10).toString() + "B10";
+        
     }
     states.menuState = menuState;
 
     function menu() {
-        var gameNameLabel;
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -61,20 +59,20 @@ var states;
         gameNameLabel = new objects.Label(stage.canvas.width / 2 + 80, 100, "COMBATRON");
         gameNameLabel.font = "bold 60px Wallpoet";
         gameNameLabel.textAlign = "center";
-        gameNameLabel.shadow = new createjs.Shadow("#ffffff", 5, 5, 5)
+        gameNameLabel.shadow = new createjs.Shadow("#ffffff", 5, 5, 5);
         game.addChild(gameNameLabel);
 
         // Display Play Button
-        playButton = new objects.Button(stage.canvas.width / 2, stage.canvas.height/2, "playButton");
+        playButton = new objects.Button(stage.canvas.width / 2, stage.canvas.height / 2, "playButton", 1.1, 1);
         game.addChild(playButton);
         playButton.addEventListener("click", playButtonClicked);
         
         // Display Play Button
-        instructionButton = new objects.Button(stage.canvas.width / 2, playButton. y + 100, "instructionsButton");
+        instructionButton = new objects.Button(stage.canvas.width / 2, playButton.y + 100, "instructionsButton", 1.1, 1);
         game.addChild(instructionButton);
         instructionButton.addEventListener("click", instructionButtonClicked);
 
         stage.addChild(game);
     }
     states.menu = menu;
-})(states || (states = {}));
+}(states || (states = {})));

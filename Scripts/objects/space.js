@@ -1,6 +1,7 @@
 /// <reference path="../managers/asset.js" />
-var objects;
+var objects, createjs, managers, stage, game;
 (function (objects) {
+    'use strict';
     // Space Class
     var Space = (function () {
         function Space(stage, game) {
@@ -10,13 +11,12 @@ var objects;
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width;
-            
             this.reset();
-
             this.dx = 8;
 
             game.addChild(this.image);
         }
+        
         Space.prototype.update = function () {
             this.image.x -= this.dx;
             if (this.image.x <= stage.canvas.width) {
@@ -32,7 +32,7 @@ var objects;
             game.removeChild(this.image);
         };
         return Space;
-    })();
+    }());
     objects.Space = Space;
-})(objects || (objects = {}));
+}(objects || (objects = {})));
 
