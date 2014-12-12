@@ -19,6 +19,7 @@ var finalScore;
 
     // Restart Game when Try Again Button is clicked
     function tryAgainClicked(event) {
+        constants.SCORE = 0;
         createjs.Sound.stop();
         stage.removeChild(game);
         game.removeAllChildren();

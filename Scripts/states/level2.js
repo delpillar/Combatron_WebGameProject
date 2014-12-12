@@ -69,7 +69,7 @@ var count, constants, console, scoreboard, button, laser, coin, enemy, label, sp
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
         collision = new managers.Collision(plane, coin, lasers, scoreboard, enemies, plane.bullets);
-        gameObjective = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Destroy 20 enemy ships!");
+        gameObjective = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Destroy " + constants.ENEMIESKILLED.toString() + " enemy ships!");
         gameObjective.font = "bold 40px Wallpoet";
         gameObjective.textAlign = "center";
         gameObjective.shadow = new createjs.Shadow("#000000", 5, 5, 5);
@@ -77,4 +77,4 @@ var count, constants, console, scoreboard, button, laser, coin, enemy, label, sp
         stage.addChild(game);
     }
     states.level2 = level2;
-})(states || (states = {}));
+}(states || (states = {})));
