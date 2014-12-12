@@ -8,11 +8,9 @@
 /// <reference path="../objects/bullet.js" />
 /// <reference path="../objects/scoreboard.js" />
 /// <reference path="../managers/collision.js" />
-
 var states, space, plane, count, bullets, coin, constants, lasers, collision, scoreboard,
     stage, game, currentState, currentStateFunction, changeState, createjs, objects, enemy,
     enemies, managers, stageLabel;
-
 (function (states) {
     'use strict';
     function playState() {
@@ -22,8 +20,7 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
             bullets[count].update();
         }
 
-        var interval = window.setInterval(function () {
-            window.clearInterval(interval);
+        setTimeout(function () {
             game.removeChild(stageLabel);
             coin.update();
             for (count = 0; count < constants.CLOUD_NUM; count += 1) {

@@ -15,10 +15,11 @@ var count, constants, console, scoreboard, button, laser, coin, enemy, label, sp
     function level3State() {
         space.update();
         plane.update();
-        coin.update();
-            
-        var interval = window.setInterval(function () {
-            window.clearInterval(interval);
+        scoreboard.update();
+        
+        setTimeout(function () {
+            coin.update();
+            collision.update();
             for (count = 0; count < constants.ENEMY_NUM; count += 1) {
                 enemies[count].update();
             }
@@ -26,14 +27,11 @@ var count, constants, console, scoreboard, button, laser, coin, enemy, label, sp
                 lasers[count].update();
             }
             game.removeChild(surviveText);
-            collision.update();
-            scoreboard.update();
         }, 2000);
         
         for (count = 0; count < plane.bullets.length; count += 1) {
             plane.bullets[count].update();
         }
-        
         if (scoreboard.lives <= 0) {
             stage.removeChild(game);
             plane.destroy();
@@ -69,7 +67,7 @@ var count, constants, console, scoreboard, button, laser, coin, enemy, label, sp
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
         collision = new managers.Collision(plane, coin, lasers, scoreboard, enemies, plane.bullets);
-        surviveText = new objects.Label(stage.canvas.width / 1.2, stage.canvas.height / 2, "Survive!");
+        surviveText = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Survive! \nGet 5 power ups \nfor more life!");
         surviveText.font = "bold 40px Wallpoet";
         surviveText.textAlign = "center";
         surviveText.shadow = new createjs.Shadow("#000000", 5, 5, 5);

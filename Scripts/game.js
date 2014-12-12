@@ -19,7 +19,7 @@
 
 // Combatron - Added basic state machine structure - Added Button and Label classes
 var stage, game, space, bullet, plane, coin, enemy;
-var lasers = [], enemies = [], console, optimizeForMobile;
+var lasers = [], enemies = [],  explosions = [], console, optimizeForMobile;
 var scoreboard, collision, tryAgain, playButton, currentState;
 var currentStateFunction, constants, changeState, createjs, progressText, managers;
 var handleFileLoad, handleFileProgress, loadError, init, gameLoop, states, background, progressBar;
@@ -35,7 +35,7 @@ function preload() {
     background = new createjs.Shape();
     background.graphics.beginFill("#000000").drawRect(0, 0, stage.canvas.width, stage.canvas.height);
     stage.addChild(background);
-    progressText = new createjs.Text("", "20px Arial", "#ff0000");
+    progressText = new createjs.Text(" ", "20px Arial", constants.LABEL_COLOUR);
     progressText.x = stage.canvas.width / 2.3 - progressText.getMeasuredWidth() / 2;
     progressText.y = stage.canvas.height / 1.3;
     progressText.text = "0 % Loaded";
@@ -54,7 +54,7 @@ function preload() {
 function handleFileProgress(event) {
     'use strict';
     progressText.text = (managers.Assets.loader.progress * 100 | 0) + " % Loaded";
-    progressBar.graphics.beginFill("#ff0000").drawRect(100, stage.canvas.height / 1.2, 500 * managers.Assets.loader.progress, 50);
+    progressBar.graphics.beginFill("#FF" + Math.floor(Math.random() * 100).toString() + "B10").drawRect(100, stage.canvas.height / 1.2, 500 * managers.Assets.loader.progress, 50);
 }
 
 // init called after Assets have been loaded.

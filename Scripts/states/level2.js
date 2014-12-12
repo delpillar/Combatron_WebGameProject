@@ -15,16 +15,14 @@ var count, constants, console, scoreboard, button, laser, coin, enemy, label, sp
     function level2State() {
         space.update();
         plane.update();
-        coin.update();
-            
-        var interval = window.setInterval(function () {
-            window.clearInterval(interval);
+        scoreboard.update();
+        setTimeout(function () {
+            coin.update();
+            collision.update();
             for (count = 0; count < constants.ENEMY_NUM; count += 1) {
                 enemies[count].update();
             }
             game.removeChild(gameObjective);
-            collision.update();
-            scoreboard.update();
         }, 2000);
         
         for (count = 0; count < plane.bullets.length; count += 1) {

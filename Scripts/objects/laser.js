@@ -14,15 +14,14 @@ var laserSound, constants;
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
             this.reset();
-
             game.addChild(this.image);
         }
+
         Laser.prototype.update = function () {
             this.image.x += this.dx;
             if (this.image.x > this.stage.canvas.width + this.width) {
                 this.reset();
             }
-            
         };
 
         Laser.prototype.reset = function () {
@@ -35,7 +34,7 @@ var laserSound, constants;
             game.removeChild(this.image);
         };
         return Laser;
-    })();
+    }());
     objects.Laser = Laser;
-})(objects || (objects = {}));
+}(objects || (objects = {})));
 

@@ -1,4 +1,5 @@
 var __extends = this.__extends || function (d, b) {
+    'use strict';
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -20,7 +21,8 @@ var objects;
             this.scaleIn = scaleIn;
             this.scaleOut = scaleOut;
             this.setButtonListeners();
-        }
+        };
+        
         Button.prototype.setButtonListeners = function () {
             this.cursor = 'pointer';
             this.on('rollover', this.onButtonOver);

@@ -16,21 +16,19 @@ var BulletSound, constants;
             this.image.regY = this.height / 2;
             this.image.scaleX = 0.25;
             this.image.scaleY = 0.5;
-            this.image.x = x;
+            this.image.x = x || 0;
             this.dx = constants.BULLET_SPEED;
-            this.image.y = y;
+            this.image.y = y || 0;
             this.index = index;
-            //this.reset();
-
             game.addChild(this.image);
         }
+        
         Bullet.prototype.update = function () {
             //console.log("pew");
             this.image.x += this.dx;
             if (this.image.x > this.stage.canvas.width + this.width) {
                 this.destroy();
             }
-            
         };
 
         Bullet.prototype.reset = function () {

@@ -20,7 +20,7 @@ var finalScore;
     // Restart Game when Try Again Button is clicked
     function tryAgainClicked(event) {
         constants.SCORE = 0;
-        createjs.Sound.stop();
+        createjs.Sound.stop('gameOver');
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
@@ -29,7 +29,10 @@ var finalScore;
     }
     states.tryAgainClicked = tryAgainClicked;
 
+    // Return to main menu when clicked
     function mainMenuButtonClicked(event) {
+        constants.SCORE = 0;
+        createjs.Sound.stop("gameOver");
         createjs.Sound.play("startBtnSound");
         
         interval = window.setInterval(function () {
@@ -79,7 +82,7 @@ var finalScore;
             game.addChild(finalScoreLabel);
 
             // Display Final Score
-            finalScore = new objects.Label(stage.canvas.width / 2 + 40, finalScoreLabel.y + 50, scoreboard.score.toString());
+            finalScore = new objects.Label(stage.canvas.width / 2 + 40, finalScoreLabel.y + 50, constants.SCORE.toString());
             finalScore.font = "50px Audiowide";
             finalScore.textAlign = "center";
             game.addChild(finalScore);
@@ -96,4 +99,4 @@ var finalScore;
         }, 2500);
     }
     states.gameOver = gameOver;
-})(states || (states = {}));
+}(states || (states = {})));

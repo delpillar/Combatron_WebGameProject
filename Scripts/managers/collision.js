@@ -1,10 +1,11 @@
 /// <reference path="../objects/laser.js" />
 /// <reference path="../objects/enemy.js" />
+/// <reference path="../objects/explosion.js" />
 /// <reference path="../objects/bullet.js" />
 /// <reference path="../objects/coin.js" />
 /// <reference path="../objects/plane.js" />
 /// <reference path="../objects/scoreboard.js" />
-var managers, createjs, count, i, currentState, constants;
+var managers, createjs, count, i, currentState, constants, explosion, objects, stage, game, explosions, bullet;
 (function (managers) {
     'use strict';
     // Collision Manager Class
@@ -17,6 +18,7 @@ var managers, createjs, count, i, currentState, constants;
             this.scoreboard = scoreboard;
             this.bullet = bullet;
         }
+        
         // Utility method - Distance calculation between two points
         Collision.prototype.distance = function (p1, p2) {
             var result = 0,
@@ -46,6 +48,7 @@ var managers, createjs, count, i, currentState, constants;
             }
         };
         
+        // checks collision between enemy and player bullet
         Collision.prototype.bulletAndEnemy = function (bullet, enemy) {
             var p1 = new createjs.Point(),
                 p2 = new createjs.Point();
@@ -58,10 +61,13 @@ var managers, createjs, count, i, currentState, constants;
                 constants.SCORE += 100;
                 this.scoreboard.score += constants.SCORE;
                 this.scoreboard.enemiesKilled += 1;
+                explosion = new objects.Explosion(stage, game);
+                explosions.push(explosion);
+                explosion.image.x = enemy.image.x;
+                explosion.image.y = enemy.image.y;
                 enemy.reset();
                 bullet.destroy();
             }
-            
         };
         
         // check collision between plane and enemy
@@ -75,6 +81,10 @@ var managers, createjs, count, i, currentState, constants;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (enemy.height / 2))) {
                 createjs.Sound.play("shipHit");
                 this.scoreboard.lives -= 1;
+                explosion = new objects.Explosion(stage, game);
+                explosions.push(explosion);
+                explosion.image.x = enemy.image.x;
+                explosion.image.y = enemy.image.y;
                 enemy.reset();
             }
         };
@@ -91,6 +101,11 @@ var managers, createjs, count, i, currentState, constants;
                 createjs.Sound.play("coinSound");
                 this.scoreboard.coinsCollected += 1;
                 constants.SCORE += 100;
+                if (currentState === constants.LEVEL3_STATE) {
+                    if (this.scoreboard.coinsCollected % 5 === 0) {
+                        this.scoreboard.lives += 1;
+                    }
+                }
                 this.scoreboard.score += constants.SCORE;
                 this.coin.reset();
             }
@@ -98,12 +113,19 @@ var managers, createjs, count, i, currentState, constants;
 
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
-            if (currentState === 1) {
+            
+            //check for collision of laser and plane if game state is level 1
+            if (currentState === constants.PLAY_STATE) {
                 for (count = 0; count < constants.CLOUD_NUM; count += 1) {
                     this.planeAndLaser(this.laser[count]);
                 }
             }
-            if (currentState === 4) {
+            
+            //check for collision of enemy, bullet, powerup and plane if game state is level 2
+            if (currentState === constants.LEVEL2_STATE) {
+                for (count = 0; count < explosions.length; count += 1) {
+                    explosions[count].update();
+                }
                 for (count = 0; count < constants.ENEMY_NUM; count += 1) {
                     this.planeAndEnemy(this.enemy[count]);
                 }
@@ -113,7 +135,12 @@ var managers, createjs, count, i, currentState, constants;
                     }
                 }
             }
-            if (currentState === 6) {
+            
+            //check for collision of laser, enemy, bullet and plane if game state is level 1
+            if (currentState === constants.LEVEL3_STATE) {
+                for (count = 0; count < explosions.length; count += 1) {
+                    explosions[count].update();
+                }
                 for (count = 0; count < constants.CLOUD_NUM; count += 1) {
                     this.planeAndLaser(this.laser[count]);
                 }

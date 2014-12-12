@@ -6,13 +6,14 @@
 /// <reference path="../objects/laser.js" />
 /// <reference path="../objects/button.js" />
 /// <reference path="../objects/label.js" />
-var states;
-var interval;
+var states, interval, createjs, stage, game, constants, currentState, currentStateFunction, changeState, plane, space,
+    powerup, objects, instructionText, playButton, mainMenuButton;
 (function (states) {
+    'use strict';
     function playButtonClicked(event) {
         createjs.Sound.play("startBtnSound");
         
-        interval = window.setInterval(function(){
+        interval = window.setInterval(function () {
             stage.removeChild(game);
             window.clearInterval(interval);
             plane.destroy();
@@ -20,14 +21,14 @@ var interval;
             game.removeAllEventListeners();
             currentState = constants.PLAY_STATE;
             changeState(currentState);
-        },1000);
+        }, 1000);
     }
     states.playButtonClicked = playButtonClicked;
     
-    function mainMenuButtonClicked(event){
+    function mainMenuButtonClicked(event) {
         createjs.Sound.play("startBtnSound");
         
-        interval = window.setInterval(function(){
+        interval = window.setInterval(function () {
             stage.removeChild(game);
             window.clearInterval(interval);
             plane.destroy();
@@ -42,10 +43,10 @@ var interval;
     
     function instructionState() {
         space.update();
-        plane.image.y = stage.canvas.height/2;
+        plane.image.y = stage.canvas.height / 2;
         plane.image.x += 5;
         
-        if(plane.image.x > stage.canvas.width){
+        if (plane.image.x > stage.canvas.width) {
             plane.image.x = 0 - plane.width;
         }
         
@@ -56,7 +57,6 @@ var interval;
 
     function instructions() {
         var gameNameLabel;
-
         // Declare new Game Container
         game = new createjs.Container();
 
@@ -76,15 +76,18 @@ var interval;
         game.addChild(gameNameLabel);
         
         // Display Game Instruction text
-        instructionText = new objects.Label(40, stage.canvas.height / 2 + 40 , "You are being hunted by your own kind and you need to escape. \nFind earth while keeping yourself alive.\nDodge the barrage of lasers by moving the mouse around.\n\nCollect powerups               for extra score. \nLeft click to shoot enemies after level 1.");
+        instructionText = new objects.Label(40, stage.canvas.height / 2 + 40,
+                                            "You are being hunted by your own kind and you need to escape. " +
+                                            "\nFind earth while keeping yourself alive." +
+                                            "\nDodge the barrage of lasers by moving the mouse around." +
+                                            "\n\nCollect powerups               for extra score. " +
+                                            "\nLeft click to shoot enemies after level 1.");
         instructionText.regX = 0;
         instructionText.regY = 0;
         instructionText.font = "15px Audiowide";
         instructionText.textAlign = "left";
         game.addChild(instructionText);
-        
-        
-        
+                
         // Display Play Again Button
         playButton = new objects.Button(stage.canvas.width - 60, stage.canvas.height - 30, "playButton", 0.6, 0.5);
         playButton.scaleX = 0.5;
@@ -102,5 +105,5 @@ var interval;
         stage.addChild(game);
     }
     states.instructions = instructions;
-})(states || (states = {}));
+}(states || (states = {})));
 

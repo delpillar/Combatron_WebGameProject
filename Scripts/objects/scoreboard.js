@@ -15,9 +15,7 @@ var objects, constants, createjs, game;
             this.coinsCollected = 0;
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
-            
             game.addChild(this.label);
-            game.addChild(this.hpBar);
         }
         Scoreboard.prototype.update = function () {
             this.labelText = "Lives: " + this.lives.toString() + "      Score: " + constants.SCORE.toString();

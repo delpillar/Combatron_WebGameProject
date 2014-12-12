@@ -9,6 +9,7 @@ var constants;
     constants.LEVEL2_STATE = 4;
     constants.LOADING = 5;
     constants.LEVEL3_STATE = 6;
+    
     // Game Constants
     constants.CLOUD_NUM = 5;
     constants.ENEMY_NUM = 5;
@@ -20,7 +21,7 @@ var constants;
     constants.ENEMY_MIN_SPEED = 2;
     constants.ENEMY_MAX_SPEED = 10;
     constants.BULLET_SPEED = 20;
-    constants.COINSCOLLECTED = 5;
-    constants.ENEMIESKILLED = 10;
+    constants.COINSCOLLECTED = 10;
+    constants.ENEMIESKILLED = 20;
     constants.SCORE = 0;
 }(constants || (constants = {})));

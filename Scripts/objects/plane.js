@@ -25,7 +25,6 @@ var bullets = [];
             this.image.regX = this.width / 2;
             this.image.regY = this.height / 2;
             this.bullets = bullets;
-            this.isPressed = false;
             this.isShooting = false;
             this.engineSound = createjs.Sound.play('gameMusic', createjs.Sound.INTERRUPT_NONE, 0, 1500, -1, 1, 0);
             game.addChild(this.image);
@@ -53,7 +52,6 @@ var bullets = [];
         Plane.prototype.update = function () {
             this.image.y = this.stage.mouseY;
             this.image.x = this.stage.mouseX;
-            //bullet.update();
             window.setInterval(function () {
                 mx = this.stage.mouseX;
                 my = this.stage.mouseY;
@@ -94,7 +92,7 @@ var bullets = [];
             game.removeChild(this.image);
         };
         return Plane;
-    })();
+    }());
     objects.Plane = Plane;
-})(objects || (objects = {}));
+}(objects || (objects = {})));
 
