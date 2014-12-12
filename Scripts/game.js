@@ -23,7 +23,6 @@ var lasers = [], enemies = [], console, optimizeForMobile;
 var scoreboard, collision, tryAgain, playButton, currentState;
 var currentStateFunction, constants, changeState, createjs, progressText, managers;
 var handleFileLoad, handleFileProgress, loadError, init, gameLoop, states, background, progressBar;
-
 // Preload function - Loads Assets and initializes game;
 function preload() {
     'use strict';
@@ -118,11 +117,11 @@ function changeState(state) {
     case constants.LOADING:
         currentStateFunction = handleFileProgress;
         break;
-    }
-    
+            
     case constants.LEVEL3_STATE:
         currentStateFunction = states.level3State;
         //instantiate level3 screen
         states.level3();
         break;
+    }
 }
