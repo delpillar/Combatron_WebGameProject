@@ -9,8 +9,12 @@
 /// <reference path="../objects/scoreboard.js" />
 /// <reference path="../managers/collision.js" />
 
-var states;
+var states, space, plane, count, bullets, coin, constants, lasers, collision, scoreboard,
+    stage, game, currentState, currentStateFunction, changeState, createjs, objects, enemy,
+    enemies, managers;
+
 (function (states) {
+    'use strict';
     function playState() {
         
         space.update();
@@ -20,18 +24,18 @@ var states;
         }
         
         
-        var interval = window.setInterval(function(){
+        var interval = window.setInterval(function () {
             window.clearInterval(interval);
             coin.update();
-            for (var count = 0; count < constants.CLOUD_NUM; count++) {
+            for (count = 0; count < constants.CLOUD_NUM; count += 1) {
                 lasers[count].update();
             }
             collision.update();
             scoreboard.update();
             
-        },1000);
+        }, 1000);
         
-        if (scoreboard.score >= 1000){
+        if (scoreboard.score >= 1000) {
             stage.removeChild(game);
             plane.destroy();
             game.removeAllChildren();
@@ -66,13 +70,12 @@ var states;
         // Show Cursor
         stage.cursor = "none";
 
-        for (var count = 0; count < constants.CLOUD_NUM; count++) {
+        for (count = 0; count < constants.CLOUD_NUM; count += 1) {
             lasers[count] = new objects.Laser(stage, game);
         }
         
-        for (var count = 0; count < constants.ENEMY_NUM; count++) {
-                
-                enemies.push(new objects.Enemy(stage, game));    
+        for (count = 0; count < constants.ENEMY_NUM; count += 1) {
+            enemies.push(new objects.Enemy(stage, game));
         }
 
         // Display Scoreboard
