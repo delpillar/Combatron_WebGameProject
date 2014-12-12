@@ -11,7 +11,7 @@
 
 var states, space, plane, count, bullets, coin, constants, lasers, collision, scoreboard,
     stage, game, currentState, currentStateFunction, changeState, createjs, objects, enemy,
-    enemies, managers;
+    enemies, managers, stageLabel;
 
 (function (states) {
     'use strict';
@@ -26,6 +26,7 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
         
         var interval = window.setInterval(function () {
             window.clearInterval(interval);
+            game.removeChild(stageLabel);
             coin.update();
             for (count = 0; count < constants.CLOUD_NUM; count += 1) {
                 lasers[count].update();
@@ -35,7 +36,7 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
             
         }, 1000);
         
-        if (scoreboard.score >= 1000) {
+        if (scoreboard.coinsCollected >= constants.COINSCOLLECTED) {
             stage.removeChild(game);
             plane.destroy();
             game.removeAllChildren();
@@ -67,6 +68,12 @@ var states, space, plane, count, bullets, coin, constants, lasers, collision, sc
         coin = new objects.Coin(stage, game);
         enemy = new objects.Enemy(stage, game);
         plane = new objects.Plane(stage, game);
+       
+        stageLabel = new objects.Label(stage.canvas.width / 1.4, stage.canvas.height / 2, "Collect 15 powerups!");
+        stageLabel.font = "bold 40px Wallpoet";
+        stageLabel.textAlign = "center";
+        stageLabel.shadow = new createjs.Shadow("#000000", 5, 5, 5);
+        game.addChild(stageLabel);
         // Show Cursor
         stage.cursor = "none";
 

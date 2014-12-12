@@ -19,8 +19,8 @@ var objects;
             this.image.scaleY = 1.8;
             this.reset();
             
-            this.dx = 2;
-            this.dy = 2;
+            this.dx = constants.ENEMY_MIN_SPEED;
+            this.dy = constants.ENEMY_MIN_SPEED;
             
             game.addChild(this.image);
         }

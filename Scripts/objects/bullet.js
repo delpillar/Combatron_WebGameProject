@@ -1,8 +1,9 @@
 /// <reference path="../managers/asset.js" />
 /// <reference path="../managers/plane.js" />
-var objects;
-var BulletSound;
+var objects, createjs, managers, game, plane;
+var BulletSound, constants;
 (function (objects) {
+    'use strict';
     // Bullet class
     var Bullet = (function () {
         function Bullet(stage, game, x, y, index) {
@@ -16,7 +17,7 @@ var BulletSound;
             this.image.scaleX = 0.25;
             this.image.scaleY = 0.5;
             this.image.x = x;
-            this.dx = 20;
+            this.dx = constants.BULLET_SPEED;
             this.image.y = y;
             this.index = index;
             //this.reset();
