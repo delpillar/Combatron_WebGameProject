@@ -1,5 +1,6 @@
-var objects;
+var objects, constants, createjs, game;
 (function (objects) {
+    'use strict';
     // Scoreboard Class
     var Scoreboard = (function () {
         function Scoreboard(stage, game) {
@@ -8,12 +9,15 @@ var objects;
             this.game = game;
             this.lives = constants.PLANE_LIVES;
             this.score = 0;
+            this.enemiesKilled = 0;
             this.label = new createjs.Text(this.labelText, constants.LABEL_FONT, constants.LABEL_COLOUR);
             this.update();
+            this.coinsCollected = 0;
             this.width = this.label.getBounds().width;
             this.height = this.label.getBounds().height;
-
+            
             game.addChild(this.label);
+            game.addChild(this.hpBar);
         }
         Scoreboard.prototype.update = function () {
             this.labelText = "Lives: " + this.lives.toString() + "      Score: " + this.score.toString();
