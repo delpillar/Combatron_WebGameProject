@@ -119,4 +119,10 @@ function changeState(state) {
         currentStateFunction = handleFileProgress;
         break;
     }
+    
+    case constants.LEVEL3_STATE:
+        currentStateFunction = states.level3State;
+        //instantiate level3 screen
+        states.level3();
+        break;
 }
