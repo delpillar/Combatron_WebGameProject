@@ -66,8 +66,7 @@ var count, constants;
 
         // Instantiate Collision Manager
         collision = new managers.Collision(plane, coin, lasers, scoreboard, enemies, plane.bullets);
-        window.addEventListener("keydown", plane.pressKey);
-        window.addEventListener("keyup", plane.releaseKey);
+        
         stage.addChild(game);
     }
     states.level2 = level2;
