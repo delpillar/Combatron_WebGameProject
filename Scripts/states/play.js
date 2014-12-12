@@ -56,7 +56,8 @@ var states;
     
         // Declare new Game Container
         game = new createjs.Container();
-        console.log(objects); 
+        window.addEventListener("mousedown", plane.pressKey);
+        window.addEventListener("mouseup", plane.releaseKey);
         // Instantiate Game Objects
         space = new objects.Space(stage, game);
         coin = new objects.Coin(stage, game);
