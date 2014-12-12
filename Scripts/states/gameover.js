@@ -47,6 +47,8 @@ var finalScore;
     function gameOver() {
         var gameOverLabel, finalScoreLabel;
         
+        window.removeEventListener("mousedown", plane.pressKey);
+        window.removeEventListener("mouseup", plane.releaseKey);
         // Declare new Game Container
         game = new createjs.Container();
 
