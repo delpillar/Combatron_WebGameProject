@@ -6,9 +6,11 @@
 /// <reference path="../objects/space.js" />
 /// <reference path="../objects/plane.js" />
 /// <reference path="../objects/scoreboard.js" />
-var states;
+var objects, states, space, createjs, stage, game, currentState, currentStateFunction, constants,
+    changeState, interval, plane, scoreboard, tryAgain, mainMenuButton;
 var finalScore;
 (function (states) {
+    "use strict";
     function gameOverState() {
         space.update();
         finalScore.color = "#FF" + Math.floor(Math.random() * 10).toString() + "B10";
@@ -26,10 +28,10 @@ var finalScore;
     }
     states.tryAgainClicked = tryAgainClicked;
 
-      function mainMenuButtonClicked(event){
+    function mainMenuButtonClicked(event) {
         createjs.Sound.play("startBtnSound");
         
-        interval = window.setInterval(function(){
+        interval = window.setInterval(function () {
             stage.removeChild(game);
             window.clearInterval(interval);
             plane.destroy();
@@ -43,8 +45,7 @@ var finalScore;
     
     // Game Over Scene
     function gameOver() {
-        var gameOverLabel;
-        var finalScoreLabel;
+        var gameOverLabel, finalScoreLabel;
         
         // Declare new Game Container
         game = new createjs.Container();
@@ -55,10 +56,8 @@ var finalScore;
         //play game over sound
         createjs.Sound.play('gameOver', createjs.Sound.INTERRUPT_NONE, 0, 1500, -1, 1, 0);
         stage.addChild(game);
-        var interval = window.setInterval(function(){
+        interval = window.setInterval(function () {
             window.clearInterval(interval);
-        
-
             // Show Cursor
             stage.cursor = "default";
         
@@ -66,14 +65,14 @@ var finalScore;
             gameOverLabel = new objects.Label(stage.canvas.width / 2 + 80, 40, "GAME OVER");
             gameOverLabel.font = "60px Wallpoet";
             gameOverLabel.textAlign = "center";
-            gameOverLabel.shadow = new createjs.Shadow("#000000", 5, 5, 5)
+            gameOverLabel.shadow = new createjs.Shadow("#000000", 5, 5, 5);
             game.addChild(gameOverLabel);
 
             // Display Final Score Label
             finalScoreLabel = new objects.Label(stage.canvas.width / 2 + 80, 120, "FINAL SCORE");
             finalScoreLabel.font = "50px Wallpoet";
             finalScoreLabel.textAlign = "center";
-            finalScoreLabel.shadow = new createjs.Shadow("#232323", 5, 5, 5)
+            finalScoreLabel.shadow = new createjs.Shadow("#232323", 5, 5, 5);
             game.addChild(finalScoreLabel);
 
             // Display Final Score
@@ -88,13 +87,10 @@ var finalScore;
             tryAgain.addEventListener("click", tryAgainClicked);
             
             // Display Main Menu Button
-            mainMenuButton = new objects.Button(stage.canvas.width / 2 , tryAgain.y + 100, "mainMenuButton", 1.2, 1);
+            mainMenuButton = new objects.Button(stage.canvas.width / 2, tryAgain.y + 100, "mainMenuButton", 1.2, 1);
             game.addChild(mainMenuButton);
             mainMenuButton.addEventListener("click", mainMenuButtonClicked);
-
-
-            
-        },2500);
+        }, 2500);
     }
     states.gameOver = gameOver;
 })(states || (states = {}));
